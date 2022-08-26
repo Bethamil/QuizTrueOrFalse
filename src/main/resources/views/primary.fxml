@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
+<StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
    <children>
-      <VBox fx:id="startVBox" alignment="CENTER" spacing="20.0" style="-fx-background-color: #0066cc;">
+      <VBox fx:id="startVBox" alignment="CENTER" spacing="20.0" style="-fx-background-color: #0066cc;" visible="false">
          <children>
             <ImageView fitHeight="223.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -99,7 +91,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox fx:id="gameVbox" alignment="CENTER" spacing="20.0" style="-fx-background-color: #0066cc;" visible="false">
+      <VBox fx:id="gameVbox" alignment="CENTER" spacing="20.0" style="-fx-background-color: #0066cc;">
          <children>
             <Button minWidth="40.0" mnemonicParsing="false" onAction="#goBack" prefHeight="44.0" prefWidth="49.0" style="-fx-background-color: #ffc201;" text="🔙" VBox.vgrow="NEVER">
                <font>
@@ -172,7 +164,7 @@
                   </VBox>
                </children>
             </StackPane>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0">
+            <HBox fx:id="trueFalseButtonHBox" alignment="CENTER" prefHeight="0.0" prefWidth="200.0">
                <children>
                   <Button minWidth="200.0" mnemonicParsing="false" onAction="#trueButton" style="-fx-background-color: green;" text="True" textFill="WHITE">
                      <font>

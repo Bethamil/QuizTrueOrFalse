@@ -3,6 +3,7 @@ package org.example.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.App;
 import org.example.model.Game;
@@ -18,33 +19,21 @@ import java.util.*;
  * With this JavaFX App you can take a quiz from multiple categories. Quiz data is sourced from opentdb
  */
 public class QuizController implements Initializable {
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private Label finalScoreLabel;
-    @FXML
-    private VBox finalScoreBox;
-    @FXML
-    private ListView<String> listViewStats;
-    @FXML
-    private ChoiceBox<String> choiceBoxStats;
-    @FXML
-    private Label categoryLabel;
-    @FXML
-    private VBox startVBox;
-    @FXML
-    private ChoiceBox<String> selectCategoryComboBox;
-    @FXML
-    private VBox gameVbox;
-    @FXML
-    private Label scoreLabel;
-    @FXML
-    private Label answersLabel;
-    @FXML
-    private Label questionNumberLabel;
+    @FXML private TextField nameTextField;
+    @FXML private ListView<String> listViewStats;
+    @FXML private ChoiceBox<String> choiceBoxStats;
+    @FXML private ChoiceBox<String> selectCategoryComboBox;
+    @FXML private HBox trueFalseButtonHBox;
+    @FXML private VBox startVBox;
+    @FXML private VBox gameVbox;
+    @FXML private VBox finalScoreBox;
+    @FXML private Label categoryLabel;
+    @FXML private Label finalScoreLabel;
+    @FXML private Label scoreLabel;
+    @FXML private Label answersLabel;
+    @FXML private Label questionNumberLabel;
+    @FXML private Label questionLabel;
     private StringBuilder answerEmojis;
-    @FXML
-    private Label questionLabel;
 
     private Game game;
     private GameResultsDAO gameResultsDAO;
@@ -65,6 +54,7 @@ public class QuizController implements Initializable {
         startVBox.setVisible(false);
         gameVbox.setVisible(true);
         questionLabel.setVisible(true);
+        trueFalseButtonHBox.setVisible(true);
         finalScoreBox.setVisible(false);
         categoryLabel.setText(selectCategoryComboBox.getValue());
         scoreLabel.setText("Score: " + game.getScore());
@@ -89,20 +79,26 @@ public class QuizController implements Initializable {
 
     private void goToNextQuestionAndCheck(boolean button) {
         if (game.getCurrentQuestionNumber() < 9) {
-            if (game.checkAnswer(button)) {
-                answerEmojis.append("✅ ");
-                scoreLabel.setText("Score: " + game.getScore());
-            } else {
-                answerEmojis.append("❌ ");
-            }
-            answersLabel.setText(answerEmojis.toString());
+            checkAndSetLabels(button);
             game.nextQuestion();
             questionNumberLabel.setText("Question: " + (game.getCurrentQuestionNumber() + 1));
             questionLabel.setText(game.getCurrentQuestion());
         } else {
+            checkAndSetLabels(button);
             questionLabel.setVisible(false);
             finalScoreBox.setVisible(true);
             finalScoreLabel.setText("Final Score: " + game.getScore());
+            trueFalseButtonHBox.setVisible(false);
+        }
+        answersLabel.setText(answerEmojis.toString());
+    }
+
+    private void checkAndSetLabels(boolean button) {
+        if (game.checkAnswer(button)) {
+            answerEmojis.append(game.getCurrentQuestionNumber()+1).append("✅ ");
+            scoreLabel.setText("Score: " + game.getScore());
+        } else {
+            answerEmojis.append(game.getCurrentQuestionNumber()+1).append("❌ ");
         }
     }
 
@@ -173,7 +169,8 @@ public class QuizController implements Initializable {
         int count = 0;
         for (int i = 0; i < gameResultsArray.length; i++) {
             gameResultsArray[i] = gameResultsList == this.gameResultsList ? gameResultsList.get(i).toString() :
-                    ++count + ": " + gameResultsList.get(i).getName() +" | score: " + gameResultsList.get(i).getScore();
+                    ++count + ": " + gameResultsList.get(i).getName() + " | score: "
+                            + gameResultsList.get(i).getScore();
         }
         listViewStats.getItems().addAll(gameResultsArray);
     }
