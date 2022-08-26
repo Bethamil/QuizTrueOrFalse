@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
+   <children>
+      <VBox fx:id="startVBox" alignment="CENTER" spacing="20.0" style="-fx-background-color: #0066cc;">
+         <children>
+            <ImageView fitHeight="223.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/quiz_logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="-30.0" />
+               </VBox.margin>
+            </ImageView>
+            <StackPane>
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f50000" height="103.0" stroke="BLACK" strokeType="INSIDE" width="399.0" />
+                  <VBox alignment="CENTER" minWidth="400.0" prefHeight="135.0" prefWidth="422.0">
+                     <children>
+                        <Label text="Select Category" textFill="WHITE">
+                           <font>
+                              <Font name="Nova Oval" size="23.0" />
+                           </font>
+                        </Label>
+                        <Separator prefHeight="12.0" prefWidth="422.0" visible="false" />
+                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="422.0">
+                           <children>
+                              <ChoiceBox fx:id="selectCategoryComboBox" minHeight="41.0" minWidth="200.0" prefHeight="41.0" prefWidth="150.0" style="-fx-background-color: white;">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <Separator orientation="VERTICAL" prefHeight="43.0" prefWidth="22.0" visible="false" />
+                              <Button fx:id="startGameButton" onAction="#startGame" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: #ffc201;" text="Start Game">
+                                 <font>
+                                    <Font name="Nova Oval" size="22.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <StackPane maxWidth="400.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc201" height="306.0" stroke="BLACK" strokeType="INSIDE" width="422.0" />
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Stats">
+                           <font>
+                              <Font name="Nova Oval" size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Separator prefHeight="12.0" prefWidth="406.0" visible="false" />
+                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="422.0">
+                           <children>
+                              <ChoiceBox fx:id="choiceBoxStats" minHeight="31.0" minWidth="200.0" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                        <Separator prefHeight="24.0" prefWidth="422.0" visible="false" />
+                        <ListView fx:id="listViewStats" prefHeight="211.0" prefWidth="402.0">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                        </ListView>
+                        <Separator prefHeight="22.0" prefWidth="406.0" visible="false" />
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="gameVbox" alignment="CENTER" spacing="20.0" style="-fx-background-color: #0066cc;" visible="false">
+         <children>
+            <Button minWidth="40.0" mnemonicParsing="false" onAction="#goBack" prefHeight="44.0" prefWidth="49.0" style="-fx-background-color: #ffc201;" text="🔙" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="-380.0" />
+               </VBox.margin>
+            </Button>
+            <ImageView fitHeight="223.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/quiz_logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="categoryLabel" text="Category" textFill="WHITE">
+               <font>
+                  <Font name="Nova Oval" size="40.0" />
+               </font>
+            </Label>
+            <StackPane prefHeight="29.0" prefWidth="400.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="383.0">
+                     <children>
+                        <Label fx:id="questionNumberLabel" text="Question">
+                           <font>
+                              <Font name="Nova Oval" size="16.0" />
+                           </font>
+                        </Label>
+                        <Separator orientation="VERTICAL" prefHeight="34.0" prefWidth="232.0" visible="false" />
+                        <Label fx:id="scoreLabel" text="Score: 0">
+                           <font>
+                              <Font name="Nova Oval" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffc201;">
+               <children>
+                  <Label fx:id="questionLabel" text="Question" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Nova Oval" size="19.0" />
+                     </font>
+                  </Label>
+                  <VBox fx:id="finalScoreBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="finalScoreLabel" text="Final Score: " textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="Nova Oval" size="34.0" />
+                           </font>
+                        </Label>
+                        <Separator minHeight="14.0" prefHeight="14.0" prefWidth="422.0" visible="false" />
+                        <TextField fx:id="nameTextField" alignment="CENTER" maxWidth="200.0" promptText="Name">
+                           <font>
+                              <Font name="Nova Oval" size="18.0" />
+                           </font>
+                        </TextField>
+                        <Separator minHeight="12.0" prefHeight="12.0" prefWidth="422.0" visible="false" />
+                        <Button mnemonicParsing="false" onAction="#addScore" style="-fx-background-color: white;" text="Add Score">
+                           <font>
+                              <Font name="Nova Oval" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0">
+               <children>
+                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#trueButton" style="-fx-background-color: green;" text="True" textFill="WHITE">
+                     <font>
+                        <Font name="Nova Oval" size="23.0" />
+                     </font>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="25.0" prefWidth="111.0" visible="false" />
+                  <Button minWidth="200.0" mnemonicParsing="false" onAction="#falseButton" style="-fx-background-color: red;" text="False" textFill="WHITE">
+                     <font>
+                        <Font name="Nova Oval" size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Label fx:id="answersLabel" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>

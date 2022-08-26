@@ -1,0 +1,1 @@
+INSERT INTO QuizGameTrueOrFalse.scores(`name`, `score`, `category`) VALUES ('Emiel', 8, 'Sports'), ('Bert', 3, 'History'), ('Jan', 6, 'Music');
