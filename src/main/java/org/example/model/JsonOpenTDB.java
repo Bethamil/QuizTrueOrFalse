@@ -11,15 +11,9 @@ import java.util.List;
  * Json file is parsed into this class.
  */
 public class JsonOpenTDB {
-    public Integer response_code;
     public List<Questions> results;
 
-    public JsonOpenTDB(int response_code, List<Questions> results) {
-        this.response_code = response_code;
-        this.results = results;
-    }
-
-    public static String readUrl(String urlString) throws Exception {
+    protected static String readUrl(String urlString) throws Exception {
         BufferedReader reader = null;
         try {
             URL url = new URL(urlString);
@@ -36,4 +30,9 @@ public class JsonOpenTDB {
                 reader.close();
         }
     }
+    protected static class Questions {
+        public String question, correct_answer;
+    }
 }
+
+

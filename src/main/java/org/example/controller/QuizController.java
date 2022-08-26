@@ -53,7 +53,6 @@ public class QuizController implements Initializable {
 
     @FXML
     private void startGame() throws Exception {
-        System.out.println(selectCategoryComboBox.getValue());
         String url = !selectCategoryComboBox.getValue().equals("Any Category")
                 ? "https://opentdb.com/api.php?amount=10&category=" +
                 categoryMap.get(selectCategoryComboBox.getValue())
@@ -86,7 +85,6 @@ public class QuizController implements Initializable {
     @FXML
     private void falseButton() {
         goToNextQuestionAndCheck(false);
-
     }
 
     private void goToNextQuestionAndCheck(boolean button) {
@@ -160,9 +158,6 @@ public class QuizController implements Initializable {
 
     private void fillChoiceBoxStats() {
         List<String> checkIfInChoiceBoxList = new ArrayList<>();
-
-
-
         choiceBoxStats.getItems().add("All");
         for (GameResults gameResults : gameResultsList) {
             if (!checkIfInChoiceBoxList.contains(gameResults.getCategory())) {
@@ -171,7 +166,6 @@ public class QuizController implements Initializable {
             }
         }
         choiceBoxStats.setValue("All");
-
     }
 
     private void setTheList(List<GameResults> gameResultsList) {
@@ -209,7 +203,7 @@ public class QuizController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectCategoryComboBox.getItems().addAll(fillMapAndArray());
-
+        selectCategoryComboBox.setValue(fillMapAndArray()[0]);
         try {
             App.getDbAccess().openConnection();
             gameResultsDAO = new GameResultsDAO(App.getDbAccess());
@@ -219,11 +213,9 @@ public class QuizController implements Initializable {
             fillChoiceBoxStats();
             showSelectedCategory();
         } catch (Exception e) {
-            System.out.println("Oke");
             listViewStats.getItems().add("SQL Error: " + e);
         }
         startVBox.setVisible(true);
         gameVbox.setVisible(false);
-
     }
 }

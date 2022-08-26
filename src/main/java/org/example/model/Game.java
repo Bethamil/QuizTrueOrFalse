@@ -28,13 +28,10 @@ public class Game {
 
     public void nextQuestion() {
         currentQuestionNumber++;
-        System.out.println(currentQuestion);
-
     }
 
     public boolean checkAnswer(boolean userAnswer) {
         rightAnswer = Boolean.parseBoolean(jsonOpenTDB.results.get(currentQuestionNumber).correct_answer);
-        System.out.println(rightAnswer);
         if (userAnswer == rightAnswer) {
             score++;
             return true;
