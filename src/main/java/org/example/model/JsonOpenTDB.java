@@ -30,7 +30,7 @@ public class JsonOpenTDB {
                 reader.close();
         }
     }
-    protected static class Questions {
+    public static class Questions {
         public String question, correct_answer;
     }
 }

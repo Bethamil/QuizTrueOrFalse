@@ -11,8 +11,7 @@ import org.jsoup.Jsoup;
 public class Game {
     private int score, currentQuestionNumber;
     private JsonOpenTDB jsonOpenTDB;
-    private String url, currentQuestion;
-    private boolean rightAnswer;
+    private final String url;
 
 
     public Game(String url) throws Exception {
@@ -31,7 +30,7 @@ public class Game {
     }
 
     public boolean checkAnswer(boolean userAnswer) {
-        rightAnswer = Boolean.parseBoolean(jsonOpenTDB.results.get(currentQuestionNumber).correct_answer);
+        boolean rightAnswer = Boolean.parseBoolean(jsonOpenTDB.results.get(currentQuestionNumber).correct_answer);
         if (userAnswer == rightAnswer) {
             score++;
             return true;
@@ -40,8 +39,7 @@ public class Game {
     }
 
     public String getCurrentQuestion() {
-        currentQuestion = Jsoup.parse(jsonOpenTDB.results.get(currentQuestionNumber).question).text();
-        return currentQuestion;
+        return Jsoup.parse(jsonOpenTDB.results.get(currentQuestionNumber).question).text();
     }
 
     public int getCurrentQuestionNumber() {
